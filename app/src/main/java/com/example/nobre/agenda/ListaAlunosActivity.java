@@ -146,6 +146,5 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }
