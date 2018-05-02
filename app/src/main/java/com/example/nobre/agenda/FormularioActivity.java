@@ -1,6 +1,9 @@
 package com.example.nobre.agenda;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -21,7 +25,9 @@ import java.io.File;
 
 public class FormularioActivity extends AppCompatActivity {
 
+    public static final int CODIGO_CAMERA = 567;
     private FormularioHelper helper;
+    private String caminhoFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +47,23 @@ public class FormularioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                String caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() +".jpg"; //define o caminho onde a foto será salva
+                caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg"; //define o caminho onde a foto será salva
                 File arquivoFoto = new File(caminhoFoto); //patametro para passar o arquivo no putExtra
                 intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
-                startActivity(intentCamera);
+                startActivityForResult(intentCamera, CODIGO_CAMERA);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_OK){ // verifica se a foto foi realmente tirada
+            if(requestCode == CODIGO_CAMERA){
+                //Abrir a foto que foi tirada
+                helper.carregaImagem(caminhoFoto);
+            }
+        }
+
     }
 
     @Override

@@ -2,13 +2,14 @@ package com.example.nobre.agenda.modelo;
 
 import java.io.Serializable;
 
-public class Aluno implements Serializable{
+public class Aluno implements Serializable {
     private Long id;
     private String nome;
     private String endereco;
     private String telefone;
     private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Aluno() {
     }
@@ -60,6 +61,10 @@ public class Aluno implements Serializable{
     public void setNota(Double nota) {
         this.nota = nota;
     }
+
+    public String getCaminhoFoto() { return caminhoFoto; }
+
+    public void setCaminhoFoto(String caminhoFoto) { this.caminhoFoto = caminhoFoto; }
 
     @Override
     public String toString() {
