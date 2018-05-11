@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nobre.agenda.adapter.AlunosAdapter;
 import com.example.nobre.agenda.dao.AlunoDAO;
 import com.example.nobre.agenda.modelo.Aluno;
 
@@ -75,9 +76,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AlunoDAO dao = new AlunoDAO(this);
         List<Aluno> alunos = dao.buscaAlunos();
         dao.close();
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this,
-                android.R.layout.simple_list_item_1,
-                alunos);
+        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
         listaAlunos.setAdapter(adapter);
     }
 
