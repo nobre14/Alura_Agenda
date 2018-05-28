@@ -47,15 +47,23 @@ public class AlunosAdapter extends BaseAdapter {
         View view = convertView; // só infla a view se a convertView(preenche de forma automática
                                 // a lista de forma que não necessita ser inflada,
                                 // adicionando itens a medida que o android é rolado) estiver nula
-        if(convertView == null){
+        if(view == null){
             view = inflater.inflate(R.layout.list_item, parent, false); // root(parent) é o "pai" do layout, o false manda ainda não colocar o parent na lista
         }
+
         TextView campoNome = view.findViewById(R.id.item_nome);
         campoNome.setText(aluno.getNome());
+
         TextView campoTelefone = view.findViewById(R.id.item_telefone);
         campoTelefone.setText(aluno.getTelefone());
-        ImageView campoFoto = view.findViewById(R.id.item_foto);
 
+        TextView campoEndereco = view.findViewById(R.id.item_endereco);
+        if(campoEndereco != null) campoEndereco.setText(aluno.getEndereco());
+
+        TextView campoSite = view.findViewById(R.id.item_site);
+        if(campoSite != null) campoSite.setText(aluno.getSite());
+
+        ImageView campoFoto = view.findViewById(R.id.item_foto);
         String caminhoFoto = aluno.getCaminhoFoto();
         if(caminhoFoto != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
@@ -66,7 +74,6 @@ public class AlunosAdapter extends BaseAdapter {
             campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);/*faz a imagem cobrir
                                                                o espaço definido*/
         }
-
         return view;
     }
 }
