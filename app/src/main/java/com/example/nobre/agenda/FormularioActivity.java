@@ -25,7 +25,7 @@ import java.io.File;
 
 public class FormularioActivity extends AppCompatActivity {
 
-    public static final int CODIGO_CAMERA = 567;
+    public static final int CODIGO_CAMERA = 1406;
     private FormularioHelper helper;
     private String caminhoFoto;
 

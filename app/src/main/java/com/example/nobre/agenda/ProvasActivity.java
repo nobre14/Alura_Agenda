@@ -48,6 +48,7 @@ public class ProvasActivity extends AppCompatActivity {
             detalhesFragment.setArguments(parametros);
 
             tx.replace(R.id.frame_principal, detalhesFragment);
+            tx.addToBackStack(null);// quando não está no modo paisagem ele faz voltar a lista de provas
             tx.commit();
         }else{
             DetalhesProvaFragment detalhesFragment = (DetalhesProvaFragment)manager.findFragmentById(R.id.frame_secundario);
